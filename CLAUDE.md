@@ -51,9 +51,14 @@ C:\projetos\tainacan-aprendizado\
 ├── .gitignore                # Arquivos ignorados pelo Git
 ├── config/
 │   └── uploads.ini           # Configurações PHP (upload 100MB)
-└── scripts/
-    ├── setup.sh              # Instalação WordPress + Tainacan
-    └── criar-colecao-exemplo.sh  # Cria coleção demo (não usado)
+├── scripts/
+│   ├── setup.sh              # Instalação WordPress + Tainacan
+│   └── criar-colecao-exemplo.sh  # Cria coleção demo (não usado)
+└── wiki/                     # Tutoriais para Wiki do GitHub
+    ├── Home.md               # Página inicial da Wiki
+    ├── Instalando-o-Ambiente.md      # Tutorial Docker para leigos
+    ├── Primeiros-Passos-no-Tainacan.md  # Tutorial uso do Tainacan
+    └── Distribuindo-o-Ambiente.md    # Guia de distribuição
 ```
 
 ## Decisões Técnicas e Problemas Resolvidos
@@ -176,23 +181,108 @@ Durante a sessão, foi criada uma coleção "Acervo de Demonstração" com:
 | Painel Tainacan | http://localhost:8080/wp-admin/admin.php?page=tainacan_admin |
 | phpMyAdmin | http://localhost:8081 |
 
+## Repositório Git
+
+O projeto está versionado com Git e hospedado no GitHub.
+
+**Configuração local:**
+- Usuário: Najla Melo
+- Email: najlamelo@gmail.com
+- Branch principal: main
+
+**Comandos Git:**
+```powershell
+# Ver status
+git status
+
+# Adicionar e commitar
+git add .
+git commit -m "Descrição das mudanças"
+
+# Enviar para GitHub
+git push origin main
+
+# Baixar atualizações
+git pull origin main
+```
+
+## Tutoriais Criados (Wiki)
+
+A pasta `wiki/` contém tutoriais prontos para serem publicados na Wiki do GitHub:
+
+### 1. Home.md
+- Página inicial com índice dos tutoriais
+- Links para todas as páginas
+- Tabela de acesso rápido com URLs e credenciais
+
+### 2. Instalando-o-Ambiente.md
+- Explicação simples do Docker (analogia do "móvel montado")
+- Passo a passo para instalar Docker Desktop
+- Como iniciar o ambiente Tainacan
+- Comandos do dia a dia
+- Problemas comuns e soluções
+
+### 3. Primeiros-Passos-no-Tainacan.md
+- O que é o Tainacan e quem usa
+- Conceitos: Coleções, Itens, Metadados, Taxonomias, Filtros
+- Passo a passo para criar coleção
+- Como adicionar metadados e itens
+- Como criar filtros e publicar
+
+### 4. Distribuindo-o-Ambiente.md
+- Como empacotar projeto (ZIP ou GitHub)
+- Instruções completas para usuário final
+- **Uso do terminal do Docker Desktop** (não Prompt de Comando)
+- Comandos com sintaxe Unix (`/c/projetos/` em vez de `C:\`)
+
+**Para publicar na Wiki do GitHub:**
+1. No repositório, vá em Settings → Features → Wiki (habilitar)
+2. Crie páginas com os mesmos nomes dos arquivos (sem .md)
+3. Cole o conteúdo de cada arquivo
+
 ## Distribuição do Projeto
 
 O projeto pode ser distribuído de três formas:
-1. **Cópia direta:** Zipando a pasta e enviando
-2. **GitHub:** Clonando o repositório
-3. **Imagem Docker:** Exportando com `docker save`
+1. **Arquivo ZIP:** Compactar pasta e enviar (email, Drive, pendrive)
+2. **GitHub:** Compartilhar link do repositório
+3. **Imagem Docker:** Exportando com `docker save` (avançado)
 
 O arquivo `instalar.bat` automatiza a instalação no Windows.
+
+**Para distribuir:**
+1. Criar ZIP da pasta `tainacan-aprendizado`
+2. Enviar junto com link para o guia `wiki/Distribuindo-o-Ambiente.md`
+3. O usuário final segue o guia usando o terminal do Docker Desktop
 
 ## Possíveis Melhorias Futuras
 
 1. Adicionar backup automático dos dados
 2. Criar script para importar/exportar coleções
-3. Adicionar mais coleções de exemplo
+3. Adicionar mais coleções de exemplo pré-configuradas
 4. Configurar HTTPS com certificado autoassinado
 5. Adicionar Portainer para gerenciamento visual dos containers
-6. Criar versão com docker-compose para Linux/macOS (shell script)
+6. Criar versão com shell script para Linux/macOS
+7. Adicionar imagens/screenshots aos tutoriais da Wiki
+8. Criar vídeos tutoriais complementares
+9. Traduzir tutoriais para inglês/espanhol
+
+## Histórico de Sessões
+
+### Sessão 1 (Janeiro 2026)
+- Criação inicial do ambiente Docker
+- Configuração do WordPress + Tainacan
+- Resolução de problemas de conexão MySQL/MariaDB
+- Criação de coleção de exemplo "Acervo de Demonstração"
+
+### Sessão 2 (Janeiro 2026)
+- Inicialização do repositório Git
+- Criação de 4 tutoriais para Wiki do GitHub:
+  - Home.md (índice)
+  - Instalando-o-Ambiente.md (Docker)
+  - Primeiros-Passos-no-Tainacan.md (uso do Tainacan)
+  - Distribuindo-o-Ambiente.md (compartilhar com outros)
+- Configuração do GitHub (usuário: najlamelo@gmail.com)
+- Publicação dos tutoriais na Wiki do repositório
 
 ## Referências
 
