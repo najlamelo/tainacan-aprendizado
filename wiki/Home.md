@@ -23,12 +23,13 @@ Tudo isso roda no seu computador através do Docker, de forma isolada e segura.
 ### 1. Instalando o Ambiente
 **[Instalando o Ambiente](Instalando-o-Ambiente)**
 
-Aprenda a instalar o Docker e colocar o ambiente para funcionar no seu computador.
+Guia completo para instalar o ambiente ou compartilhar com outras pessoas.
 
 **Conteúdo:**
-- O que é Docker (explicação simples)
-- Como instalar o Docker Desktop
-- Como iniciar o ambiente Tainacan
+- Como compartilhar o projeto (ZIP ou GitHub)
+- Verificar pré-requisitos (WSL, virtualização)
+- Instalar Docker Desktop e Git
+- Iniciar o ambiente Tainacan
 - Comandos do dia a dia
 - Solução de problemas comuns
 
@@ -47,20 +48,6 @@ Aprenda a usar o Tainacan para criar e gerenciar seu acervo digital.
 - Adicionando itens ao acervo
 - Criando filtros
 - Publicando o acervo
-
----
-
-### 3. Distribuindo para Outros Computadores
-**[Distribuindo o Ambiente](Distribuindo-o-Ambiente)**
-
-Guia para compartilhar o ambiente com outras pessoas.
-
-**Conteúdo:**
-- Como empacotar o projeto (ZIP ou GitHub)
-- Instruções completas para o usuário final
-- Uso do terminal do Docker Desktop
-- Comandos passo a passo
-- Solução de problemas
 
 ---
 
