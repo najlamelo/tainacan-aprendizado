@@ -44,32 +44,117 @@ Envie as instruções abaixo para a pessoa que vai usar o ambiente.
 
 ---
 
-## Requisitos
+## Requisitos do Sistema
 
-- Windows 10 ou 11 (64 bits)
+- Windows 10 (versão 1903 ou superior) ou Windows 11 (64 bits)
 - 8 GB de RAM (mínimo)
 - 10 GB de espaço em disco livre
 - Conexão com internet (para baixar o Docker e as imagens)
+- **WSL 2** (Subsistema Windows para Linux) - veja como verificar abaixo
+- **Virtualização** habilitada na BIOS/UEFI
 
 ---
 
-## Etapa 1: Instalar o Docker Desktop
+## Etapa 1: Verificar e Preparar o Windows
 
-### 1.1 Baixar o Docker Desktop
+Antes de instalar o Docker, precisamos garantir que seu Windows está preparado. Siga **todos os passos** desta etapa.
+
+### 1.1 Verificar se o WSL está instalado
+
+1. Pressione as teclas **Windows + X**
+2. Clique em **Terminal (Admin)** ou **PowerShell (Admin)**
+3. Se perguntar sobre permissões, clique em **Sim**
+4. Digite o comando abaixo e pressione **Enter**:
+
+```
+wsl --status
+```
+
+**Se aparecer informações sobre o WSL** (versão, kernel, etc.):
+- O WSL já está instalado. Pule para o passo **1.3**.
+
+**Se aparecer erro ou "não reconhecido":**
+- O WSL não está instalado. Continue no passo **1.2**.
+
+### 1.2 Instalar o WSL 2
+
+No mesmo terminal (como Administrador), execute:
+
+```
+wsl --install
+```
+
+**O que vai acontecer:**
+- O Windows vai baixar e instalar o WSL 2
+- Também instalará o Ubuntu como distribuição Linux padrão
+- **Será necessário reiniciar o computador**
+
+Após reiniciar:
+1. Uma janela do Ubuntu pode abrir pedindo para criar usuário
+2. Você pode fechar essa janela - não precisamos do Ubuntu, apenas do WSL
+3. Continue para o passo **1.3**
+
+### 1.3 Verificar os Recursos do Windows
+
+Precisamos garantir que alguns recursos estão ativados:
+
+1. Pressione a tecla **Windows** e digite: `Ativar ou desativar recursos do Windows`
+2. Clique no resultado que aparecer
+3. Na janela que abrir, **marque** (se não estiverem marcados):
+   - ☑ **Hyper-V** (pode não aparecer em versões Home do Windows)
+   - ☑ **Plataforma de Máquina Virtual**
+   - ☑ **Subsistema do Windows para Linux**
+4. Clique em **OK**
+5. Se pedir para reiniciar, **reinicie o computador**
+
+### 1.4 Verificar se a Virtualização está ativada
+
+A virtualização precisa estar ativada na BIOS/UEFI do computador.
+
+**Para verificar:**
+1. Pressione **Ctrl + Shift + Esc** para abrir o Gerenciador de Tarefas
+2. Clique na aba **Desempenho**
+3. Clique em **CPU**
+4. Procure por **"Virtualização"** na parte inferior direita
+   - Se mostrar **"Habilitado"** ou **"Enabled"**: Está tudo certo!
+   - Se mostrar **"Desabilitado"** ou **"Disabled"**: Veja a seção "Problemas Comuns" no final deste guia
+
+### 1.5 Confirmar que está tudo pronto
+
+Abra novamente o Terminal como Administrador e execute:
+
+```
+wsl --version
+```
+
+Deve mostrar algo como:
+```
+Versão do WSL: 2.x.x.x
+Versão do kernel: 5.x.x.x
+...
+```
+
+Se aparecer essas informações, **parabéns!** Seu Windows está pronto para o Docker.
+
+---
+
+## Etapa 2: Instalar o Docker Desktop
+
+### 2.1 Baixar o Docker Desktop
 
 1. Acesse: **https://www.docker.com/products/docker-desktop/**
 2. Clique no botão **"Download for Windows"**
 3. Aguarde o download (aproximadamente 500 MB)
 
-### 1.2 Instalar
+### 2.2 Instalar
 
 1. Dê **duplo-clique** no arquivo baixado (`Docker Desktop Installer.exe`)
 2. Se perguntar sobre permissões, clique em **Sim**
-3. Na tela de configuração, **deixe as opções como estão** e clique em **OK**
-4. Aguarde a instalação terminar
+3. Na tela de configuração, certifique-se que **"Use WSL 2 instead of Hyper-V"** está marcado
+4. Clique em **OK** e aguarde a instalação terminar
 5. Clique em **"Close and restart"** - o computador vai reiniciar
 
-### 1.3 Primeira execução
+### 2.3 Primeira execução
 
 Após reiniciar:
 
@@ -81,7 +166,7 @@ Após reiniciar:
 
 ---
 
-## Etapa 2: Colocar os arquivos do projeto no computador
+## Etapa 3: Colocar os arquivos do projeto no computador
 
 ### Se recebeu um arquivo ZIP:
 
@@ -98,11 +183,11 @@ Você fará o download direto pelo terminal do Docker (veja a próxima etapa).
 
 ---
 
-## Etapa 3: Iniciar o ambiente pelo Docker Desktop
+## Etapa 4: Iniciar o ambiente pelo Docker Desktop
 
 Todos os comandos serão executados no **terminal do Docker Desktop**. Isso é mais simples do que usar o Prompt de Comando do Windows.
 
-### 3.1 Abrir o terminal do Docker Desktop
+### 4.1 Abrir o terminal do Docker Desktop
 
 1. Abra o **Docker Desktop**
 2. Na parte inferior da janela, você verá uma área escura - este é o **terminal integrado**
@@ -110,7 +195,7 @@ Todos os comandos serão executados no **terminal do Docker Desktop**. Isso é m
 
 *(Imagem: O terminal fica na parte de baixo da janela do Docker Desktop)*
 
-### 3.2 Navegar até a pasta do projeto
+### 4.2 Navegar até a pasta do projeto
 
 No terminal do Docker Desktop, digite o comando abaixo e pressione **Enter**:
 
@@ -120,7 +205,7 @@ cd /c/projetos/tainacan-aprendizado
 
 > **Nota:** No terminal do Docker, usamos `/c/` em vez de `C:\`
 
-### 3.3 (Opcional) Se recebeu link do GitHub
+### 4.3 (Opcional) Se recebeu link do GitHub
 
 Se você ainda não tem os arquivos e recebeu um link do GitHub, execute:
 
@@ -134,7 +219,7 @@ cd tainacan-aprendizado
 
 *(Substitua USUARIO pelo nome correto)*
 
-### 3.4 Iniciar os containers
+### 4.4 Iniciar os containers
 
 Execute o comando:
 
@@ -147,7 +232,7 @@ docker-compose up -d
 - Você verá mensagens de download e criação dos containers
 - Quando terminar, verá: `Creating tainacan-wordpress ... done`
 
-### 3.5 Configurar o WordPress e Tainacan
+### 4.5 Configurar o WordPress e Tainacan
 
 Após os containers iniciarem, execute:
 
@@ -159,7 +244,7 @@ docker exec tainacan-wordpress setup-tainacan.sh
 
 ---
 
-## Etapa 4: Acessar o Tainacan
+## Etapa 5: Acessar o Tainacan
 
 Abra seu navegador e acesse:
 
@@ -214,11 +299,51 @@ docker exec tainacan-wordpress setup-tainacan.sh
 
 ## Problemas Comuns
 
+### "WSL não está instalado" ou "wsl não é reconhecido"
+
+**Solução:**
+1. Abra o Terminal como Administrador
+2. Execute: `wsl --install`
+3. Reinicie o computador
+4. Tente novamente
+
+### "Virtualização está desabilitada"
+
+A virtualização precisa ser ativada na BIOS/UEFI. O processo varia conforme o fabricante:
+
+**Para acessar a BIOS:**
+1. Reinicie o computador
+2. Pressione repetidamente a tecla de acesso à BIOS durante a inicialização:
+   - **Dell, Lenovo:** F2
+   - **HP:** F10 ou Esc
+   - **Asus, Acer:** F2 ou Del
+   - **MSI:** Del
+
+**Na BIOS, procure por:**
+- "Intel Virtualization Technology" ou "Intel VT-x" → **Enable**
+- "AMD-V" ou "SVM Mode" → **Enable**
+- Geralmente fica em: Advanced → CPU Configuration
+
+Salve (F10) e reinicie.
+
+### "O Docker Desktop não abre" ou "Docker failed to start"
+
+1. Verifique se o WSL 2 está instalado (veja Etapa 1)
+2. Verifique se a virtualização está ativada (veja acima)
+3. Abra o Terminal como Administrador e execute:
+   ```
+   wsl --update
+   wsl --set-default-version 2
+   ```
+4. Reinicie o computador
+5. Tente abrir o Docker Desktop novamente
+
 ### "Não consigo acessar localhost:8080"
 
 1. Verifique se o Docker Desktop está aberto e rodando
 2. No terminal, execute `docker ps` para ver se os containers estão ativos
 3. Aguarde 1-2 minutos após iniciar os containers
+4. Tente usar `http://127.0.0.1:8080` em vez de `localhost`
 
 ### "Erro: No such file or directory"
 
@@ -230,17 +355,20 @@ ls
 
 Deve mostrar os arquivos: `docker-compose.yml`, `Dockerfile`, `README.md`, etc.
 
-### "O Docker Desktop não abre"
-
-1. Reinicie o computador
-2. Verifique se a virtualização está ativada na BIOS
-3. No Windows, procure por "Ativar ou desativar recursos do Windows" e certifique-se que:
-   - "Plataforma de Máquina Virtual" está marcado
-   - "Subsistema do Windows para Linux" está marcado
+Se a pasta não existir, crie-a:
+```
+mkdir -p /c/projetos
+```
 
 ### "Porta 8080 já está em uso"
 
 Outro programa está usando a porta. Feche programas como XAMPP, WAMP, Skype, ou altere a porta no arquivo `docker-compose.yml`.
+
+### "Windows Home não tem Hyper-V"
+
+O Windows Home não inclui Hyper-V, mas isso não é problema! O Docker Desktop usa WSL 2 no lugar. Apenas certifique-se de que:
+1. WSL 2 está instalado
+2. "Plataforma de Máquina Virtual" está ativada nos recursos do Windows
 
 ---
 
