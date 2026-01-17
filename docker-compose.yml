@@ -1,0 +1,74 @@
+services:
+  # Banco de Dados MariaDB (compatível com MySQL, mais leve)
+  db:
+    image: mariadb:10.11
+    container_name: tainacan-db
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wordpress
+      MARIADB_PASSWORD: wordpress
+      MARIADB_ROOT_PASSWORD: rootpassword
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - tainacan-network
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost", "-u", "root", "-prootpassword"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  # WordPress com Tainacan
+  wordpress:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tainacan-wordpress
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./config/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    networks:
+      - tainacan-network
+
+  # phpMyAdmin para gerenciamento visual do banco
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: tainacan-phpmyadmin
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: wordpress
+      PMA_PASSWORD: wordpress
+      UPLOAD_LIMIT: 100M
+    networks:
+      - tainacan-network
+
+volumes:
+  db_data:
+    name: tainacan-db-data
+  wordpress_data:
+    name: tainacan-wordpress-data
+
+networks:
+  tainacan-network:
+    name: tainacan-network
+    driver: bridge
