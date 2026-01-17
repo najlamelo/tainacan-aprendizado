@@ -1,0 +1,13 @@
+# Força terminações de linha LF em scripts shell
+# Isso evita problemas ao clonar em Windows
+*.sh text eol=lf
+*.bash text eol=lf
+
+# Arquivos batch do Windows devem manter CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Arquivos de configuração
+*.yml text eol=lf
+*.yaml text eol=lf
+Dockerfile text eol=lf
