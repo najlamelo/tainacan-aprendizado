@@ -326,6 +326,22 @@ A virtualização precisa ser ativada na BIOS/UEFI. O processo varia conforme o 
 
 Salve (F10) e reinicie.
 
+### "WSL integration with distro 'Ubuntu' unexpectedly stopped"
+
+Este erro aparece como uma janela pop-up do Docker Desktop dizendo que a integração WSL parou inesperadamente.
+
+**Solução:**
+1. Na janela de erro, clique no botão **"Restart the WSL integration"**
+2. Aguarde alguns segundos
+3. O Docker Desktop deve voltar a funcionar normalmente
+
+**Se o botão não funcionar:**
+1. Feche o Docker Desktop completamente
+2. Abra o Terminal como Administrador
+3. Execute: `wsl --shutdown`
+4. Aguarde 10 segundos
+5. Abra o Docker Desktop novamente
+
 ### "O Docker Desktop não abre" ou "Docker failed to start"
 
 1. Verifique se o WSL 2 está instalado (veja Etapa 1)
