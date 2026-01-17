@@ -55,10 +55,9 @@ C:\projetos\tainacan-aprendizado\
 │   ├── setup.sh              # Instalação WordPress + Tainacan
 │   └── criar-colecao-exemplo.sh  # Cria coleção demo (não usado)
 └── wiki/                     # Tutoriais para Wiki do GitHub
-    ├── Home.md               # Página inicial da Wiki
-    ├── Instalando-o-Ambiente.md      # Tutorial Docker para leigos
-    ├── Primeiros-Passos-no-Tainacan.md  # Tutorial uso do Tainacan
-    └── Distribuindo-o-Ambiente.md    # Guia de distribuição
+    ├── Home.md               # Página inicial da Wiki (índice)
+    ├── Instalando-o-Ambiente.md      # Guia completo (instalação + distribuição)
+    └── Primeiros-Passos-no-Tainacan.md  # Tutorial uso do Tainacan
 ```
 
 ## Decisões Técnicas e Problemas Resolvidos
@@ -208,19 +207,32 @@ git pull origin main
 
 ## Tutoriais Criados (Wiki)
 
-A pasta `wiki/` contém tutoriais prontos para serem publicados na Wiki do GitHub:
+A pasta `wiki/` contém tutoriais para a Wiki do GitHub (3 páginas):
 
 ### 1. Home.md
 - Página inicial com índice dos tutoriais
-- Links para todas as páginas
+- Links para as duas páginas de tutorial
 - Tabela de acesso rápido com URLs e credenciais
+- Comandos úteis
 
-### 2. Instalando-o-Ambiente.md
-- Explicação simples do Docker (analogia do "móvel montado")
-- Passo a passo para instalar Docker Desktop
-- Como iniciar o ambiente Tainacan
-- Comandos do dia a dia
-- Problemas comuns e soluções
+### 2. Instalando-o-Ambiente.md (Guia Completo)
+- **Como compartilhar o projeto** (ZIP ou GitHub)
+- **Verificação de pré-requisitos:**
+  - WSL 2 (instalação e verificação)
+  - Virtualização na BIOS
+  - Recursos do Windows
+  - Git (instalação opcional)
+- **Instalação do Docker Desktop**
+- **3 opções para obter os arquivos:** ZIP, GitHub+Git, GitHub sem Git
+- **Uso do terminal do Docker Desktop** (não Prompt de Comando)
+- Comandos com sintaxe Unix (`/c/projetos/` em vez de `C:\`)
+- **Problemas comuns e soluções:**
+  - Git não reconhecido
+  - WSL não instalado
+  - Virtualização desabilitada
+  - WSL integration stopped
+  - Docker failed to start
+  - Porta em uso
 
 ### 3. Primeiros-Passos-no-Tainacan.md
 - O que é o Tainacan e quem usa
@@ -229,30 +241,21 @@ A pasta `wiki/` contém tutoriais prontos para serem publicados na Wiki do GitHu
 - Como adicionar metadados e itens
 - Como criar filtros e publicar
 
-### 4. Distribuindo-o-Ambiente.md
-- Como empacotar projeto (ZIP ou GitHub)
-- Instruções completas para usuário final
-- **Uso do terminal do Docker Desktop** (não Prompt de Comando)
-- Comandos com sintaxe Unix (`/c/projetos/` em vez de `C:\`)
-
 **Para publicar na Wiki do GitHub:**
 1. No repositório, vá em Settings → Features → Wiki (habilitar)
-2. Crie páginas com os mesmos nomes dos arquivos (sem .md)
+2. Crie páginas: Home, Instalando-o-Ambiente, Primeiros-Passos-no-Tainacan
 3. Cole o conteúdo de cada arquivo
 
 ## Distribuição do Projeto
 
-O projeto pode ser distribuído de três formas:
+O projeto pode ser distribuído de duas formas principais:
 1. **Arquivo ZIP:** Compactar pasta e enviar (email, Drive, pendrive)
-2. **GitHub:** Compartilhar link do repositório
-3. **Imagem Docker:** Exportando com `docker save` (avançado)
-
-O arquivo `instalar.bat` automatiza a instalação no Windows.
+2. **GitHub:** Compartilhar link: https://github.com/najlamelo/tainacan-aprendizado
 
 **Para distribuir:**
-1. Criar ZIP da pasta `tainacan-aprendizado`
-2. Enviar junto com link para o guia `wiki/Distribuindo-o-Ambiente.md`
-3. O usuário final segue o guia usando o terminal do Docker Desktop
+1. Enviar ZIP ou link do GitHub
+2. O usuário final segue o guia `wiki/Instalando-o-Ambiente.md`
+3. Todos os comandos são executados no terminal do Docker Desktop
 
 ## Possíveis Melhorias Futuras
 
@@ -274,15 +277,29 @@ O arquivo `instalar.bat` automatiza a instalação no Windows.
 - Resolução de problemas de conexão MySQL/MariaDB
 - Criação de coleção de exemplo "Acervo de Demonstração"
 
-### Sessão 2 (Janeiro 2026)
+### Sessão 2 (17 Janeiro 2026)
 - Inicialização do repositório Git
-- Criação de 4 tutoriais para Wiki do GitHub:
-  - Home.md (índice)
-  - Instalando-o-Ambiente.md (Docker)
-  - Primeiros-Passos-no-Tainacan.md (uso do Tainacan)
-  - Distribuindo-o-Ambiente.md (compartilhar com outros)
 - Configuração do GitHub (usuário: najlamelo@gmail.com)
-- Publicação dos tutoriais na Wiki do repositório
+- Criação inicial de 4 tutoriais para Wiki
+- **Versão v1.0.0** - Versão inicial com tutoriais
+
+- Adição de verificação de pré-requisitos (WSL, virtualização)
+- **Versão v1.1.0** - Guia com pré-requisitos
+
+- Solução para erro "WSL integration stopped"
+- **Versão v1.1.1** - Solução WSL integration
+
+- Instruções de instalação do Git
+- **Versão v1.1.2** - Instruções Git
+
+- Mesclagem dos tutoriais (Distribuindo + Instalando → único arquivo)
+- Remoção de Distribuindo-o-Ambiente.md
+- **Versão v1.2.0** - Tutoriais mesclados (versão atual)
+
+**Estrutura final da Wiki:**
+- Home (índice)
+- Instalando-o-Ambiente (guia completo)
+- Primeiros-Passos-no-Tainacan (tutorial Tainacan)
 
 ## Referências
 
