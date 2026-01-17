@@ -168,7 +168,7 @@ Após reiniciar:
 
 ## Etapa 3: Colocar os arquivos do projeto no computador
 
-### Se recebeu um arquivo ZIP:
+### Opção A: Se recebeu um arquivo ZIP (mais simples)
 
 1. Localize o arquivo `tainacan-aprendizado.zip`
 2. Clique com o botão direito e selecione **"Extrair tudo..."**
@@ -177,9 +177,77 @@ Após reiniciar:
 
 A pasta final deve ficar em: `C:\projetos\tainacan-aprendizado`
 
-### Se recebeu um link do GitHub:
+**Pule para a Etapa 4.**
 
-Você fará o download direto pelo terminal do Docker (veja a próxima etapa).
+---
+
+### Opção B: Se recebeu um link do GitHub
+
+Para baixar do GitHub, você precisa do **Git** instalado. Siga os passos abaixo.
+
+#### 3.1 Verificar se o Git está instalado
+
+1. Pressione **Windows + X**
+2. Clique em **Terminal** ou **PowerShell**
+3. Digite o comando:
+
+```
+git --version
+```
+
+**Se aparecer** `git version 2.x.x`:
+- O Git já está instalado. Pule para o passo **3.3**.
+
+**Se aparecer** "não é reconhecido" ou erro:
+- O Git não está instalado. Continue no passo **3.2**.
+
+#### 3.2 Instalar o Git
+
+1. Acesse: **https://git-scm.com/download/win**
+2. O download deve começar automaticamente (arquivo de ~50 MB)
+3. Execute o instalador baixado (`Git-2.x.x-64-bit.exe`)
+4. **Clique em Next** em todas as telas (as opções padrão estão corretas)
+5. Clique em **Install** e aguarde
+6. Clique em **Finish**
+
+**Importante:** Feche e abra novamente o Terminal/PowerShell para que o Git seja reconhecido.
+
+#### 3.3 Verificar se o Git funciona
+
+Abra um novo Terminal e execute:
+
+```
+git --version
+```
+
+Deve mostrar: `git version 2.x.x.windows.x`
+
+#### 3.4 Criar a pasta e baixar o projeto
+
+No Terminal, execute os comandos abaixo (um por vez):
+
+```
+cd C:\
+mkdir projetos
+cd projetos
+git clone https://github.com/najlamelo/tainacan-aprendizado.git
+```
+
+Aguarde o download terminar. A pasta será criada em: `C:\projetos\tainacan-aprendizado`
+
+---
+
+### Opção C: Baixar do GitHub sem instalar Git
+
+Se preferir não instalar o Git:
+
+1. Acesse: **https://github.com/najlamelo/tainacan-aprendizado**
+2. Clique no botão verde **"Code"**
+3. Clique em **"Download ZIP"**
+4. Extraia o arquivo baixado em `C:\projetos\`
+5. **Renomeie** a pasta de `tainacan-aprendizado-main` para `tainacan-aprendizado`
+
+A pasta final deve ficar em: `C:\projetos\tainacan-aprendizado`
 
 ---
 
@@ -205,19 +273,17 @@ cd /c/projetos/tainacan-aprendizado
 
 > **Nota:** No terminal do Docker, usamos `/c/` em vez de `C:\`
 
-### 4.3 (Opcional) Se recebeu link do GitHub
+### 4.3 Verificar se a pasta existe
 
-Se você ainda não tem os arquivos e recebeu um link do GitHub, execute:
+Se você seguiu a Etapa 3, a pasta já deve existir. Verifique com:
 
 ```
-cd /c
-mkdir -p projetos
-cd projetos
-git clone https://github.com/USUARIO/tainacan-aprendizado.git
-cd tainacan-aprendizado
+ls /c/projetos/tainacan-aprendizado
 ```
 
-*(Substitua USUARIO pelo nome correto)*
+Deve mostrar os arquivos: `docker-compose.yml`, `Dockerfile`, `README.md`, etc.
+
+**Se a pasta não existir**, volte para a Etapa 3 e siga uma das opções (A, B ou C).
 
 ### 4.4 Iniciar os containers
 
@@ -298,6 +364,18 @@ docker exec tainacan-wordpress setup-tainacan.sh
 ---
 
 ## Problemas Comuns
+
+### "git não é reconhecido" ou "git is not recognized"
+
+O Git não está instalado no computador.
+
+**Solução:**
+1. Acesse: **https://git-scm.com/download/win**
+2. Baixe e instale (clique Next em tudo)
+3. **Feche e abra** o Terminal novamente
+4. Tente o comando `git --version`
+
+**Alternativa:** Baixe o projeto como ZIP diretamente do GitHub (veja Etapa 3, Opção C).
 
 ### "WSL não está instalado" ou "wsl não é reconhecido"
 
