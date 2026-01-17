@@ -51,7 +51,8 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
 
 # Copiar script de setup
 COPY scripts/setup.sh /usr/local/bin/setup-tainacan.sh
-RUN chmod +x /usr/local/bin/setup-tainacan.sh
+# Converter terminações de linha CRLF para LF (necessário se clonado em Windows)
+RUN sed -i 's/\r$//' /usr/local/bin/setup-tainacan.sh && chmod +x /usr/local/bin/setup-tainacan.sh
 
 # Configurar permissões corretas
 RUN chown -R www-data:www-data /var/www/html
