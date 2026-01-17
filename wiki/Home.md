@@ -79,7 +79,7 @@ docker ps
 # Recomeçar do zero (apaga tudo!)
 docker-compose down -v
 docker-compose up -d
-docker exec tainacan-wordpress setup-tainacan.sh
+docker exec tainacan-wordpress bash /usr/local/bin/setup-tainacan.sh
 ```
 
 ---

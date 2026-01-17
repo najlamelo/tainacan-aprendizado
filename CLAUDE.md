@@ -127,7 +127,7 @@ C:\projetos\tainacan-aprendizado\
 docker-compose up -d
 
 # Setup inicial (primeira vez)
-docker exec tainacan-wordpress setup-tainacan.sh
+docker exec tainacan-wordpress bash /usr/local/bin/setup-tainacan.sh
 
 # Parar ambiente
 docker-compose down
@@ -135,7 +135,7 @@ docker-compose down
 # Reiniciar do zero (apaga dados)
 docker-compose down -v
 docker-compose up -d
-docker exec tainacan-wordpress setup-tainacan.sh
+docker exec tainacan-wordpress bash /usr/local/bin/setup-tainacan.sh
 
 # Ver logs
 docker-compose logs -f wordpress

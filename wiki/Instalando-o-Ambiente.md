@@ -287,7 +287,7 @@ docker-compose up -d
 Após os containers iniciarem, execute:
 
 ```
-docker exec tainacan-wordpress setup-tainacan.sh
+docker exec tainacan-wordpress bash /usr/local/bin/setup-tainacan.sh
 ```
 
 **Aguarde** até ver a mensagem de sucesso. Isso pode levar 1-2 minutos.
@@ -342,7 +342,7 @@ Deve mostrar 3 containers: `tainacan-wordpress`, `tainacan-db`, `tainacan-phpmya
 ```
 docker-compose down -v
 docker-compose up -d
-docker exec tainacan-wordpress setup-tainacan.sh
+docker exec tainacan-wordpress bash /usr/local/bin/setup-tainacan.sh
 ```
 
 ---
@@ -458,8 +458,8 @@ O Windows Home não inclui Hyper-V, mas isso não é problema! O Docker Desktop 
 | Ligar | `docker-compose up -d` |
 | Desligar | `docker-compose down` |
 | Ver status | `docker ps` |
-| Setup inicial | `docker exec tainacan-wordpress setup-tainacan.sh` |
-| Resetar tudo | `docker-compose down -v && docker-compose up -d && docker exec tainacan-wordpress setup-tainacan.sh` |
+| Setup inicial | `docker exec tainacan-wordpress bash /usr/local/bin/setup-tainacan.sh` |
+| Resetar tudo | `docker-compose down -v && docker-compose up -d && docker exec tainacan-wordpress bash /usr/local/bin/setup-tainacan.sh` |
 
 ---
 

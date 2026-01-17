@@ -46,7 +46,7 @@ docker-compose up -d
 Aguarde ~10 segundos após os containers subirem, então execute:
 
 ```powershell
-docker exec tainacan-wordpress setup-tainacan.sh
+docker exec tainacan-wordpress bash /usr/local/bin/setup-tainacan.sh
 ```
 
 Este comando irá:
@@ -186,7 +186,7 @@ Se o WordPress não foi configurado automaticamente:
 
 ```powershell
 # Reexecutar o setup
-docker exec tainacan-wordpress setup-tainacan.sh
+docker exec tainacan-wordpress bash /usr/local/bin/setup-tainacan.sh
 ```
 
 ### "Docker Desktop não inicia"

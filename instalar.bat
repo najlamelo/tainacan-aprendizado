@@ -55,12 +55,12 @@ timeout /t 15 /nobreak >nul
 echo.
 echo Executando configuração do WordPress e Tainacan...
 echo.
-docker exec tainacan-wordpress setup-tainacan.sh
+docker exec tainacan-wordpress bash /usr/local/bin/setup-tainacan.sh
 
 if %errorlevel% neq 0 (
     echo.
     echo AVISO: Houve um problema no setup. Tente executar manualmente:
-    echo docker exec tainacan-wordpress setup-tainacan.sh
+    echo docker exec tainacan-wordpress bash /usr/local/bin/setup-tainacan.sh
     echo.
 )
 
