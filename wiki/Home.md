@@ -50,6 +50,20 @@ Aprenda a usar o Tainacan para criar e gerenciar seu acervo digital.
 
 ---
 
+### 3. Distribuindo para Outros Computadores
+**[Distribuindo o Ambiente](Distribuindo-o-Ambiente)**
+
+Guia para compartilhar o ambiente com outras pessoas.
+
+**Conteúdo:**
+- Como empacotar o projeto (ZIP ou GitHub)
+- Instruções completas para o usuário final
+- Uso do terminal do Docker Desktop
+- Comandos passo a passo
+- Solução de problemas
+
+---
+
 ## Acesso Rápido
 
 Após iniciar o ambiente, acesse:
