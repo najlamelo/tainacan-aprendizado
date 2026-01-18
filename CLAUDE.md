@@ -294,12 +294,49 @@ O projeto pode ser distribuído de duas formas principais:
 
 - Mesclagem dos tutoriais (Distribuindo + Instalando → único arquivo)
 - Remoção de Distribuindo-o-Ambiente.md
-- **Versão v1.2.0** - Tutoriais mesclados (versão atual)
+- **Versão v1.2.0** - Tutoriais mesclados
+
+### Sessão 3 (17 Janeiro 2026 - continuação)
+Resolução de problemas de execução do script setup em máquinas Windows de destino.
+
+**Problema:** Erro `exec /usr/local/bin/setup-tainacan.sh: no such file or directory`
+**Causa:** Terminações de linha Windows (CRLF) em scripts shell não funcionam em Linux.
+
+**Soluções aplicadas:**
+
+1. **v1.2.1** - Adicionado `.gitattributes` para forçar LF em arquivos .sh
+   - Não resolveu para repositórios já clonados
+
+2. **v1.2.2** - Comando de setup alterado para usar bash explicitamente
+   - De: `docker exec container setup-tainacan.sh`
+   - Para: `docker exec container bash /usr/local/bin/setup-tainacan.sh`
+   - Arquivos atualizados: instalar.bat, README.md, CLAUDE.md, wiki/*.md
+
+3. **v1.2.3** - Conversão CRLF→LF adicionada ao Dockerfile (solução definitiva)
+   - Linha adicionada: `RUN sed -i 's/\r$//' /usr/local/bin/setup-tainacan.sh`
+   - Garante funcionamento independente das configurações Git do usuário
+
+**Versão atual:** v1.2.3
 
 **Estrutura final da Wiki:**
 - Home (índice)
 - Instalando-o-Ambiente (guia completo)
 - Primeiros-Passos-no-Tainacan (tutorial Tainacan)
+
+## Lições Aprendidas
+
+### Problema de Line Endings (CRLF vs LF)
+Scripts shell (.sh) devem ter terminações LF para funcionar em Linux. Quando desenvolvido em Windows:
+
+1. **Prevenção:** Usar `.gitattributes` com `*.sh text eol=lf`
+2. **Correção no build:** Adicionar `sed -i 's/\r$//'` no Dockerfile
+3. **Execução:** Usar `bash /path/script.sh` em vez de apenas `/path/script.sh`
+
+### Comando docker exec em Windows
+O comando `docker exec container script.sh` pode falhar em Windows. Usar sempre:
+```
+docker exec container bash /full/path/to/script.sh
+```
 
 ## Referências
 
